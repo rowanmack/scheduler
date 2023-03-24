@@ -16,10 +16,17 @@ export function getAppointmentsForDay(state, day) {
 
 export function getInterview(state, interview) {
 
-  let resultObj = null
+  let resultObj = {}
 
-  
+  if(!interview) {
+    return null
+  }
 
+   resultObj = { ...interview }
+  let interviewerID = interview.interviewer
+  let interviewerObj = state.interviewers[interviewerID]
+  resultObj.interviewer = {...interviewerObj}
 
+  return resultObj
 }
 
