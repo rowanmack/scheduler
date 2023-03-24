@@ -14,3 +14,12 @@ export function getAppointmentsForDay(state, day) {
   return resultArr;
 }
 
+export function getInterview(state, interview) {
+
+  let resultObj = null
+
+  
+
+
+}
+
