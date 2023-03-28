@@ -12,14 +12,6 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  const updateSpots = () => {
-    let totalSpots = ''
-    for(const element of state) {
-      console.log(element);
-    }
-  }
-  console.log(state)
-
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -30,19 +22,59 @@ export default function useApplicationData() {
     });
   }, []);
 
+  function updateSpots(state, newAppnts, id) {
+    let spots = {
+      dayID: 0,
+      appointments: [],
+      remainingSpots: 0
+    };
+
+    for (let day of state.days) {
+      if (day.appointments.includes(id)) {
+        spots.appointments = [...day.appointments];
+        spots.dayID = day.id;
+      }
+    };
+
+    spots.appointments.forEach(appntID => {
+      if (newAppnts[appntID] && newAppnts[appntID].interview === null) {
+        spots.remainingSpots++;
+      }
+    });
+
+    const updatedDay = {
+      ...state.days[spots.dayID - 1],
+      spots: spots.remainingSpots
+    };
+
+    const days = [...state.days];
+    days[spots.dayID - 1] = updatedDay;
+
+    return days;
+  }
+
   const bookInterview = (id, interview) => {
     console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
+
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
+
+    const days = updateSpots(state, appointments, id);
+
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        setState({ ...state, appointments });
+        setState(prev => ({
+          ...prev,
+          days,
+          appointments
+        })
+        );
       });
   };
 
@@ -55,9 +87,17 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+
+    const days = updateSpots(state, appointments, id);
+
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        setState({ ...state, appointments });
+        setState(prev => ({
+          ...prev,
+          days,
+          appointments
+        })
+        );
       });
   };
 
