@@ -3,7 +3,6 @@ import axios from "axios";
 
 
 export default function useApplicationData() {
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -12,6 +11,14 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
+
+  const updateSpots = () => {
+    let totalSpots = ''
+    for(const element of state) {
+      console.log(element);
+    }
+  }
+  console.log(state)
 
   useEffect(() => {
     Promise.all([
