@@ -53,12 +53,10 @@ export default function useApplicationData() {
     
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        setState(prev => ({
-          ...prev,
+        setState({ ...state,
           days,
           appointments
         })
-        );
       });
   };
 
