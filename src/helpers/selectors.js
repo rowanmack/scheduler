@@ -14,7 +14,7 @@ export function getAppointmentsForDay(state, day) {
   return resultArr;
 }
 
-export function getInterviewersForDay (state, day) {
+export function getInterviewersForDay(state, day) {
 
   let interviewerIdArray = [];
 
@@ -32,17 +32,17 @@ export function getInterviewersForDay (state, day) {
 
 export function getInterview(state, interview) {
 
-  let resultObj = {}
+  let resultObj = {};
 
-  if(!interview) {
-    return null
+  if (!interview) {
+    return null;
   }
 
-   resultObj = { ...interview }
-  let interviewerID = interview.interviewer
-  let interviewerObj = state.interviewers[interviewerID]
-  resultObj.interviewer = {...interviewerObj}
+  resultObj = { ...interview };
+  let interviewerID = interview.interviewer;
+  let interviewerObj = state.interviewers[interviewerID];
+  resultObj.interviewer = { ...interviewerObj };
 
-  return resultObj
+  return resultObj;
 }
 
