@@ -8,6 +8,14 @@ Using the latest tools and techniques, this project was tested following manual,
 
 Focuse was on a single page application (SPA), combining a concise API with a WebSocket server to build a realtime experience.
 
+## Screenshots
+
+!["GIF Navigating Scheduler APP"](https://github.com/rowanmack/scheduler/blob/master/docs/interview-scheduler.gif?raw=true)
+
+!["Scheduler Appointment on Hover"](https://github.com/rowanmack/scheduler/blob/master/docs/appointment-hover.png?raw=true)
+
+!["Scheduler Appointment Form"](https://github.com/rowanmack/scheduler/blob/master/docs/appointment-form.png?raw=true)
+
 ## Setup
 
 Install dependencies with `npm install`.
