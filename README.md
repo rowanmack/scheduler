@@ -8,7 +8,7 @@ Using the latest tools and techniques, this project was tested following manual,
 
 Focuse was on a single page application (SPA), combining a concise API with a WebSocket server to build a realtime experience.
 
-## Screenshots
+## Preview
 
 !["GIF Navigating Scheduler APP"](https://github.com/rowanmack/scheduler/blob/master/docs/interview-scheduler.gif?raw=true)
 
